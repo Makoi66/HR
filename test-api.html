@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - Career on Autopilot</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+        button { padding: 10px 20px; margin: 5px; background: #4A90E2; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #357ABD; }
+        .response { margin-top: 10px; padding: 10px; background: #f5f5f5; border-radius: 4px; white-space: pre-wrap; }
+        input, textarea { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 API Test - Career on Autopilot</h1>
+    
+    <div class="test-section">
+        <h3>1. Тест AI чата сотрудника</h3>
+        <input type="text" id="employee-query" placeholder="Введите вопрос для AI (например: Как стать senior разработчиком?)" value="Как стать senior разработчиком?">
+        <button onclick="testEmployeeChat()">Отправить запрос</button>
+        <div id="employee-response" class="response"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>2. Тест AI чата HR</h3>
+        <input type="text" id="hr-query" placeholder="Введите запрос для поиска кандидатов" value="Найди senior Python разработчика">
+        <button onclick="testHrChat()">Отправить запрос</button>
+        <div id="hr-response" class="response"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>3. Тест получения данных сотрудника</h3>
+        <input type="number" id="employee-id" placeholder="ID сотрудника" value="123">
+        <button onclick="testGetEmployee()">Получить данные</button>
+        <div id="employee-data" class="response"></div>
+    </div>
+
+    <div class="test-section">
+        <h3>4. Тест поиска сотрудников</h3>
+        <textarea id="search-criteria" placeholder='Критерии поиска в JSON формате' rows="3">{"hard_skills": ["Python"], "level": "senior"}</textarea>
+        <button onclick="testSearchEmployees()">Поиск</button>
+        <div id="search-results" class="response"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000';
+        
+        // Функция для отображения ответа с поддержкой markdown
+        function displayResponse(responseDiv, status, data) {
+            let responseText = `Статус: ${status}\nОтвет: ${JSON.stringify(data, null, 2)}`;
+            
+            // Если есть markdown в ответе, попробуем его отрендерить
+            if (data.response && typeof marked !== 'undefined') {
+                const markdownPreview = `\n\n--- Markdown Preview ---\n${marked.parse(data.response)}`;
+                responseText += markdownPreview;
+            }
+            
+            responseDiv.innerHTML = responseText.replace(/\n/g, '<br>');
+        }
+
+        async function testEmployeeChat() {
+            const query = document.getElementById('employee-query').value;
+            const responseDiv = document.getElementById('employee-response');
+            
+            try {
+                responseDiv.textContent = 'Отправка запроса...';
+                const response = await fetch(`${API_BASE}/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query: query,
+                        role: 'employee',
+                        userId: 123
+                    })
+                });
+                
+                const data = await response.json();
+                displayResponse(responseDiv, response.status, data);
+            } catch (error) {
+                responseDiv.textContent = `Ошибка: ${error.message}`;
+            }
+        }
+
+        async function testHrChat() {
+            const query = document.getElementById('hr-query').value;
+            const responseDiv = document.getElementById('hr-response');
+            
+            try {
+                responseDiv.textContent = 'Отправка запроса...';
+                const response = await fetch(`${API_BASE}/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query: query,
+                        role: 'manager'
+                    })
+                });
+                
+                const data = await response.json();
+                displayResponse(responseDiv, response.status, data);
+            } catch (error) {
+                responseDiv.textContent = `Ошибка: ${error.message}`;
+            }
+        }
+
+        async function testGetEmployee() {
+            const employeeId = document.getElementById('employee-id').value;
+            const responseDiv = document.getElementById('employee-data');
+            
+            try {
+                responseDiv.textContent = 'Отправка запроса...';
+                const response = await fetch(`${API_BASE}/api/employee/${employeeId}`);
+                const data = await response.json();
+                displayResponse(responseDiv, response.status, data);
+            } catch (error) {
+                responseDiv.textContent = `Ошибка: ${error.message}`;
+            }
+        }
+
+        async function testSearchEmployees() {
+            const criteria = document.getElementById('search-criteria').value;
+            const responseDiv = document.getElementById('search-results');
+            
+            try {
+                responseDiv.textContent = 'Отправка запроса...';
+                const response = await fetch(`${API_BASE}/api/employees/search`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        criteria: JSON.parse(criteria)
+                    })
+                });
+                
+                const data = await response.json();
+                displayResponse(responseDiv, response.status, data);
+            } catch (error) {
+                responseDiv.textContent = `Ошибка: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

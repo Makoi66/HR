@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career on Autopilot - Rewards Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], }, colors: { 'bg-main': '#F8FAFF', 'accent': '#4A90E2', 'card-bg': '#FFFFFF', 'secondary-bg': '#F1F5F9', 'text-dark': '#1E293B', }, borderRadius: { 'xl': '16px', '2xl': '20px', }, boxShadow: { 'soft': '0 4px 12px rgba(0, 0, 0, 0.05)', } } } }
+    </script>
+    <style>body { background-color: #F8FAFF; color: #1E293B; font-family: 'Inter', sans-serif; }</style>
+</head>
+<body id="page-gifts" class="bg-bg-main">
+    <header id="header-container" class="border-b bg-white"><!-- Header will be inserted by JS --></header>
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-3xl font-bold mb-2">Rewards Store</h1>
+        <div class="p-4 bg-blue-100 border border-accent text-accent rounded-xl mb-8 text-lg font-bold">
+            Your Balance: <span id="xp-balance"></span> XP
+        </div>
+        <div id="rewards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Rewards will be inserted by JS -->
+        </div>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career on Autopilot - HR Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], }, colors: { 'bg-main': '#F8FAFF', 'accent': '#4A90E2', 'card-bg': '#FFFFFF', 'secondary-bg': '#F1F5F9', 'text-dark': '#1E293B', }, borderRadius: { 'xl': '16px', '2xl': '20px', }, boxShadow: { 'soft': '0 4px 12px rgba(0, 0, 0, 0.05)', } } } }
+    </script>
+    <style>body { background-color: #F8FAFF; color: #1E293B; font-family: 'Inter', sans-serif; }</style>
+</head>
+<body id="page-hr-profile" class="bg-bg-main">
+    <header id="header-container" class="border-b bg-white"><!-- Header will be inserted by JS --></header>
+    <main class="container mx-auto px-6 py-20 flex justify-center items-center">
+        <div class="bg-card-bg p-10 rounded-2xl shadow-soft text-center w-full max-w-md">
+            <img id="hr-avatar" class="h-32 w-32 rounded-full object-cover mx-auto mb-4" src="" alt="HR Avatar">
+            <h2 id="hr-name" class="text-2xl font-bold"></h2>
+            <p id="hr-role" class="text-gray-500 mt-1"></p>
+            <!-- ИЗМЕНЕНИЕ: Кнопка стала ссылкой -->
+            <a href="hr-edit-profile.html" class="inline-block mt-6 px-6 py-2 rounded-xl bg-secondary-bg text-text-dark font-bold hover:bg-gray-200 transition-colors">Edit Profile</a>
+        </div>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career on Autopilot - My Applications</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], }, colors: { 'bg-main': '#F8FAFF', 'accent': '#4A90E2', 'card-bg': '#FFFFFF', 'secondary-bg': '#F1F5F9', 'text-dark': '#1E293B', }, borderRadius: { 'xl': '16px', '2xl': '20px', }, boxShadow: { 'soft': '0 4px 12px rgba(0, 0, 0, 0.05)', } } } }
+    </script>
+    <style>
+        body { background-color: #F8FAFF; color: #1E293B; font-family: 'Inter', sans-serif; }
+        .notification-dot { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+        tr.clickable-row:hover { background-color: #F8FAFF; cursor: pointer; }
+    </style>
+</head>
+<body id="page-applications" class="bg-bg-main">
+    <header id="header-container" class="border-b bg-white"><!-- Header will be inserted by JS --></header>
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-3xl font-bold mb-6">My Applications</h1>
+        <div id="filter-tabs" class="flex space-x-1 mb-6 border-b">
+            <button class="filter-btn px-4 py-2 font-medium text-accent border-b-2 border-accent" data-filter="Active">Active</button>
+            <button class="filter-btn px-4 py-2 font-medium text-gray-500 hover:text-accent" data-filter="Accepted">Accepted</button>
+            <button class="filter-btn px-4 py-2 font-medium text-gray-500 hover:text-accent" data-filter="Rejected">Rejected</button>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-soft overflow-hidden">
+            <table class="w-full text-left">
+                <thead class="bg-secondary-bg text-sm text-gray-600 uppercase">
+                    <tr><th class="p-4">Вакансия</th><th class="p-4">Отдел</th><th class="p-4">Дата</th><th class="p-4">Статус</th></tr>
+                </thead>
+                <tbody id="applications-tbody"></tbody>
+            </table>
+        </div>
+
+        <!-- НОВЫЙ БЛОК: Модальное окно для деталей заявки -->
+        <div id="application-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div class="bg-white rounded-2xl shadow-soft w-full max-w-2xl p-8 transform transition-all scale-95 opacity-0" id="modal-content">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 id="modal-title" class="text-2xl font-bold text-text-dark"></h2>
+                        <p class="text-gray-500">Project: <span id="modal-project" class="font-medium text-gray-700"></span></p>
+                    </div>
+                    <button id="modal-close-btn" class="text-gray-400 hover:text-gray-600">&times;</button>
+                </div>
+                <div class="mt-6 border-t pt-6">
+                    <h3 class="font-bold mb-2">Требования и описание:</h3>
+                    <p id="modal-details" class="text-gray-600 whitespace-pre-line"></p>
+                </div>
+                <div id="modal-actions" class="mt-8 flex justify-end gap-4">
+                    <!-- Кнопки "Принять/Отклонить" будут вставлены сюда через JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Demo - Career on Autopilot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body { background-color: #F8FAFF; color: #1E293B; font-family: 'Inter', sans-serif; }
+        .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 { 
+            color: #1E293B; 
+            font-weight: bold; 
+            margin-top: 0.5rem; 
+            margin-bottom: 0.25rem; 
+        }
+        .prose ul, .prose ol { 
+            margin: 0.5rem 0; 
+            padding-left: 1.5rem; 
+        }
+        .prose li { 
+            margin: 0.25rem 0; 
+        }
+        .prose strong { 
+            font-weight: bold; 
+            color: #1E293B; 
+        }
+        .prose p { 
+            margin: 0.5rem 0; 
+        }
+        .prose hr { 
+            border: none; 
+            border-top: 1px solid #E2E8F0; 
+            margin: 1rem 0; 
+        }
+        .chat-message { 
+            background: #F1F5F9; 
+            border-radius: 8px; 
+            padding: 12px; 
+            margin: 8px 0; 
+        }
+    </style>
+</head>
+<body class="bg-bg-main p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">🎨 Markdown Demo - AI Chat</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Исходный markdown текст -->
+            <div>
+                <h2 class="text-xl font-bold mb-4">Исходный Markdown текст:</h2>
+                <div class="bg-gray-100 p-4 rounded-lg">
+                    <pre id="markdown-source" class="whitespace-pre-wrap text-sm"></pre>
+                </div>
+            </div>
+            
+            <!-- Обработанный HTML -->
+            <div>
+                <h2 class="text-xl font-bold mb-4">Обработанный результат:</h2>
+                <div class="chat-message">
+                    <div id="markdown-result" class="prose prose-sm max-w-none"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-8">
+            <h2 class="text-xl font-bold mb-4">Тестовые примеры:</h2>
+            <div class="space-y-4">
+                <button onclick="loadExample('hr-report')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                    HR Отчет о кандидатах
+                </button>
+                <button onclick="loadExample('career-advice')" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+                    Карьерные советы
+                </button>
+                <button onclick="loadExample('skills-analysis')" class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600">
+                    Анализ навыков
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const examples = {
+            'hr-report': `### Кандидат 1: Alexey Ivanov
+
+1. **Имя и должность:**
+   - **ФИО:** Alexey Ivanov
+   - **Должность:** Middle Backend Developer
+   - **Уровень:** Middle
+   - **Опыт работы:** 3 года
+
+2. **Ключевое соответствие:**
+   - **Почему он подходит:** Идеально подходит благодаря опыту в разработке на Python, использовании Django, Docker и SQL, а также успешному участии в проекте по разработке моделей кредитного скоринга.
+
+3. **Потенциальные риски или вопросы:**
+   - **Риски:** Полное соответствие.
+
+4. **Рекомендация:**
+   - **Рекомендация:** Первоочередной кандидат.
+
+---
+
+Этот отчет предоставляет четкую и структурированную информацию о кандидате, его соответствия требованиям и рекомендации для дальнейших действий.`,
+
+            'career-advice': `# 🚀 План развития карьеры
+
+## Текущее состояние
+Вы работаете **Middle Backend Developer** с опытом 3 года. Ваши основные навыки:
+- Python (Proficient)
+- Django (Advanced) 
+- Docker (Intermediate)
+
+## Рекомендации для роста до Senior
+
+### 1. Технические навыки
+- **Системное проектирование:** Изучите архитектурные паттерны
+- **Производительность:** Оптимизация запросов и кэширование
+- **Микросервисы:** Docker Compose, Kubernetes
+
+### 2. Soft Skills
+- **Менторство:** Помогайте junior разработчикам
+- **Лидерство:** Возьмите на себя техническое лидерство в проектах
+- **Коммуникация:** Улучшите навыки презентации
+
+### 3. Конкретные шаги
+1. Пройдите курс "Advanced Python Patterns"
+2. Изучите FastAPI для современных API
+3. Получите сертификацию AWS/Docker`,
+
+            'skills-analysis': `## 📊 Анализ ваших навыков
+
+### Hard Skills (Технические)
+| Навык | Уровень | Рекомендации |
+|-------|---------|--------------|
+| Python | Proficient | ✅ Отлично! Изучите асинхронное программирование |
+| Django | Advanced | ✅ Хорошо! Попробуйте FastAPI для разнообразия |
+| Docker | Intermediate | 🔄 Развивайте: Kubernetes, CI/CD |
+
+### Soft Skills (Мягкие навыки)
+- **Коммуникация:** 8/10 - отлично!
+- **Командная работа:** 7/10 - хорошо
+- **Лидерство:** 5/10 - есть потенциал для роста
+
+### 🎯 Следующие шаги
+1. **Приоритет 1:** Изучите Kubernetes
+2. **Приоритет 2:** Развивайте лидерские качества
+3. **Приоритет 3:** Изучите DevOps практики`
+        };
+
+        function loadExample(exampleKey) {
+            const markdownText = examples[exampleKey];
+            document.getElementById('markdown-source').textContent = markdownText;
+            document.getElementById('markdown-result').innerHTML = marked.parse(markdownText);
+        }
+
+        // Загружаем первый пример по умолчанию
+        loadExample('hr-report');
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career on Autopilot - Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], }, colors: { 'bg-main': '#F8FAFF', 'accent': '#4A90E2', 'card-bg': '#FFFFFF', 'secondary-bg': '#F1F5F9', 'text-dark': '#1E293B', }, borderRadius: { 'xl': '16px', '2xl': '20px', }, boxShadow: { 'soft': '0 4px 12px rgba(0, 0, 0, 0.05)', } } } }
+    </script>
+    <style>
+        body { background-color: #F8FAFF; color: #1E293B; font-family: 'Inter', sans-serif; }
+        /* Стили для красивого переключателя ролей */
+        input[type="radio"]:checked + .role-label {
+            background-color: #FFFFFF;
+            color: #1E293B;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body id="page-register" class="min-h-screen flex items-center justify-center p-6">
+    <div class="bg-card-bg p-8 md:p-10 rounded-2xl shadow-soft w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center text-text-dark mb-8">Регистрация</h2>
+        <form id="register-form" class="space-y-6">
+            
+            <!-- НОВЫЙ БЛОК: Выбор роли -->
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">Выберите вашу роль</label>
+              <div class="flex justify-around p-1 bg-secondary-bg rounded-xl">
+                  <div>
+                      <input type="radio" name="role" id="role-employee" value="employee" class="sr-only" checked>
+                      <label for="role-employee" class="role-label cursor-pointer px-6 py-2 rounded-lg transition-colors">Работник</label>
+                  </div>
+                  <div>
+                      <input type="radio" name="role" id="role-hr" value="hr" class="sr-only">
+                      <label for="role-hr" class="role-label cursor-pointer px-6 py-2 rounded-lg transition-colors">HR</label>
+                  </div>
+              </div>
+            </div>
+
+            <div><label for="email_reg" class="block text-sm font-medium text-gray-700">Рабочий Email</label><input type="email" id="email_reg" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-xl focus:ring-accent focus:border-accent"></div>
+            <div><label for="password_reg" class="block text-sm font-medium text-gray-700">Создайте пароль</label><input type="password" id="password_reg" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-xl focus:ring-accent focus:border-accent"></div>
+            <div><label for="password_confirm" class="block text-sm font-medium text-gray-700">Подтвердите пароль</label><input type="password" id="password_confirm" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-xl focus:ring-accent focus:border-accent"></div>
+            <button type="submit" class="w-full py-3 px-4 bg-accent text-white font-bold rounded-xl hover:bg-blue-600 transition-colors">Зарегистрироваться</button>
+            <p class="text-center text-sm text-gray-600">Уже есть аккаунт? <a href="login.html" class="font-medium text-accent hover:underline">Войти</a></p>
+        </form>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>

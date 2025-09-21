@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career on Autopilot - Edit HR Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'], }, colors: { 'bg-main': '#F8FAFF', 'accent': '#4A90E2', 'card-bg': '#FFFFFF', 'secondary-bg': '#F1F5F9', 'text-dark': '#1E293B', }, borderRadius: { 'xl': '16px', '2xl': '20px', }, boxShadow: { 'soft': '0 4px 12px rgba(0, 0, 0, 0.05)', } } } }
+    </script>
+    <style>body { background-color: #F8FAFF; color: #1E293B; font-family: 'Inter', sans-serif; }</style>
+</head>
+<body id="page-hr-edit-profile" class="bg-bg-main">
+    <header id="header-container" class="border-b bg-white"><!-- Header will be inserted by JS --></header>
+   <main class="container mx-auto px-6 py-12">
+       <div class="max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-soft">
+           <h1 class="text-3xl font-bold mb-8">Edit HR Profile</h1>
+           
+           <!-- Секция аватара -->
+           <div class="flex items-center gap-6 mb-8 pb-8 border-b">
+               <img id="hr-avatar-preview" class="h-20 w-20 rounded-full object-cover" src="" alt="HR Avatar Preview">
+               <div>
+                   <label for="hr-avatar-upload" class="cursor-pointer px-5 py-2 rounded-xl bg-secondary-bg text-text-dark font-bold hover:bg-gray-200 transition-colors">Upload new photo</label>
+                   <input id="hr-avatar-upload" type="file" accept="image/*" class="hidden">
+                   <p class="text-sm text-gray-500 mt-2">PNG or JPG, max 2MB.</p>
+               </div>
+           </div>
+
+           <!-- Секция персональных данных -->
+           <div class="mb-8 pb-8">
+               <h2 class="text-xl font-bold mb-4">Personal Info</h2>
+               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   <div>
+                       <label for="hr-name-input" class="block text-sm font-medium text-gray-700">Имя и Фамилия</label>
+                       <input id="hr-name-input" type="text" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-xl">
+                    </div>
+                   <div>
+                       <label for="hr-role-input" class="block text-sm font-medium text-gray-700">Должность</label>
+                       <input id="hr-role-input" type="text" class="mt-1 w-full px-3 py-2 border border-gray-300 rounded-xl">
+                    </div>
+               </div>
+           </div>
+
+           <!-- Кнопки действий -->
+           <div class="mt-10 flex justify-end gap-4">
+               <a href="hr-profile.html" class="px-6 py-2 rounded-xl bg-secondary-bg text-text-dark font-bold hover:bg-gray-200">Cancel</a>
+               <button id="save-hr-profile-btn" class="px-6 py-2 rounded-xl bg-accent text-white font-bold hover:bg-blue-600">Save Changes</button>
+           </div>
+       </div>
+   </main>
+    <script src="script.js" defer></script>
+</body>
+</html>
